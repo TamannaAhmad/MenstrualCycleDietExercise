@@ -71,14 +71,14 @@
     </style>
     <title>User Form</title>
     <!-- Use the Flask route to serve the CSS -->
-    <link rel="stylesheet" href="/static/styles/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
     <ul class="nav">
-        <li class="nav"><a href="form.html" class="active" >Get your plan</a></li>
-        <li class="nav"><a href="info.html">Information</a></li>
-        <li class="nav"><a href="index.html">Home</a></li>
-        <li style="float:left;" class="navbar-left"><img src="/static/logo.png" alt="flow well logo" style="width: 11%"></li>
+        <li class="nav"><a href="{{ url_for('get_plan') }}" class="active" >Get your plan</a></li>
+        <li class="nav"><a href="{{ url_for('info') }}">Information</a></li>
+        <li class="nav"><a href="{{ url_for('home') }}">Home</a></li>
+        <li style="float:left;" class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
     </ul>
     <br>
     <h1>Get your Personal Health Plan and PCOD Risk Assessment</h1>
@@ -115,8 +115,8 @@
                 <input type="number" id="avg_menses_length" name="avg_menses_length" required/>
             </li>
             <li style="margin:0.5em">
-                <label for="number_of_peak_bleeding_days">Number of days of peak bleeding: </label>
-                <input type="number" id="number_of_peak_bleeding_days" name="number_of_peak" required/>
+                <label for="number_of_peak">Number of days of peak bleeding: </label>
+                <input type="number" id="number_of_peak" name="number_of_peak" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="unusual_bleeding">Do you experience Unusual Bleeding?</label>
@@ -139,8 +139,6 @@
             </li>
         </ul>
     </form>
-    <br>
-    <p style="text-align: center;">Go to the <a href="result.html" style="display: inline; background-color: none; padding: 0em;">chatbot</a>.</p>
     <br>
 </body>
 </html>

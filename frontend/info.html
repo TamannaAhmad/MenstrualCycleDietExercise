@@ -41,14 +41,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Menstrual Health Information</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
   </head>
   <body>
     <ul class = "nav">
-        <li><a href="form.html">Get your plan</a></li>
-        <li><a href="info.html" class="active">Information</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li style="float:left;"><img src="logo.png" alt="flow well logo" style="width: 11%"></li>
+        <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
+        <li><a href="{{ url_for('info') }}" class="active">Information</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li style="float:left;"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
     </ul>
     <br>
     <h1>Menstrual Health Information</h1>
@@ -64,7 +64,7 @@
             <li class="list">ovulation</li>
             <li class="list">the luteal phase</li>
         </ul> 
-        <img src="graph.png" alt="menstrual cycle phases graph" style="width: 75%;" class="ctnt">
+        <img src="{{ url_for('static', filename='graph.png') }}" alt="menstrual cycle phases graph" style="width: 75%;" class="ctnt">
         <p>
         Each phase is characterized by distinct hormonal changes and physiological responses. 
         <br>The menstrual phase marks the beginning of the cycle, where the uterine lining sheds if pregnancy has not 
@@ -75,7 +75,7 @@
         as optimizing diet and exercise routines to align with the body's natural rhythms.
         </p>
         <div class="wrapper">
-            <button type = "submit"><a href="form.html" style="background-color: none;">Ready to dive in?</a></button>
+            <button type = "submit"><a href="{{ url_for('get_plan') }}" style="background-color: none;">Ready to dive in?</a></button>
         </div>
         <br>
   </body>

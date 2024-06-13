@@ -41,17 +41,19 @@
         }
     </style>
     <title>Your Result</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
   </head>
   <body>
     <ul>
-        <li><a href="form.html">Get your plan</a></li>
-        <li><a href="info.html">Information</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li style="float:left;" class="navbar-left"><img src="logo.png" alt="flow well logo" style="width: 11%"></li>
+        <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
+        <li><a href="{{ url_for('info') }}">Information</a></li>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li style="float:left;" class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
     </ul>
     <h1 style="font-family:'Georgia';">Your Phase Prediction</h1>
     <p style="text-align: center;">Your menstrual cycle phase prediction is ready!</p>
+    <p style="text-align: center; font-weight: bold;">{{ pcod_risk }}</p>
+    <p style="text-align: center; font-weight: bold;">{{ cycle_phase }}</p>
     <p>
         Now that you know your menstrual cycle phase, you can make use of our chatbot to 
         learn more about the diet and exercise plan that you can follow.
