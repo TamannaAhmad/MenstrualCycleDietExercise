@@ -70,33 +70,35 @@
         }
     </style>
     <title>User Form</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <!-- Use the Flask route to serve the CSS -->
+    <link rel="stylesheet" href="/static/styles/styles.css">
 </head>
 <body>
     <ul class="nav">
-        <li class="nav"><a href="form.html" class="active">Get your plan</a></li>
+        <li class="nav"><a href="form.html" class="active" >Get your plan</a></li>
         <li class="nav"><a href="info.html">Information</a></li>
         <li class="nav"><a href="index.html">Home</a></li>
-        <li style="float:left;" class="navbar-left"><img src="static/logo.png" alt="flow well logo" style="width: 11%"></li>
+        <li style="float:left;" class="navbar-left"><img src="/static/logo.png" alt="flow well logo" style="width: 11%"></li>
     </ul>
     <br>
     <h1>Get your Personal Health Plan and PCOD Risk Assessment</h1>
     <p>Ready to get your personalised plan? Enter your details below!</p>
-    <form method="post" action="/submit">
+    <!-- Change the form action to /submit -->
+    <form action="/submit" method="post">
         <h2>Your Personal Information</h2>
         <p>Why do we need this? This information is used to calculate your BMI, which helps us calculate your PCOD Risk Assessment.</p>
         <ul>
             <li style="margin:0.5em">
               <label for="age">Age: </label>
-              <input type="number" id="age" name="age" />
+              <input type="number" id="age" name="age" required/>
             </li>
             <li style="margin:0.5em">
               <label for="height">Height (cm): </label>
-              <input type="number" id="height" name="height" />
+              <input type="number" id="height" name="height" required/>
             </li>
             <li style="margin:0.5em">
               <label for="weight">Weight (kgs): </label>
-              <input type="number" id="weight" name="weight" />
+              <input type="number" id="weight" name="weight" required/>
             </li>
         </ul>
         <br>
@@ -106,30 +108,31 @@
         <ul>
             <li style="margin:0.5em">
                 <label for="avg_cycle_length">Average Cycle Length (days): </label>
-                <input type="number" id="avg_cycle_length" name="avg_cycle_length" />
+                <input type="number" id="avg_cycle_length" name="avg_cycle_length" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="avg_menses_length">Average Menses (Period) Length (days): </label>
-                <input type="number" id="avg_menses_length" name="avg_menses_length" />
+                <input type="number" id="avg_menses_length" name="avg_menses_length" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="number_of_peak_bleeding_days">Number of days of peak bleeding: </label>
-                <input type="number" id="number_of_peak_bleeding_days" name="number_of_peak_bleeding_days" />
+                <input type="number" id="number_of_peak_bleeding_days" name="number_of_peak" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="unusual_bleeding">Do you experience Unusual Bleeding?</label>
-                <select name="unusual_bleeding" id="unusual_bleeding">
+                <select name="unusual_bleeding" id="unusual_bleeding" required>
+                    <option value="void">Y/N</option>
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
                 </select>
             </li>
             <li style="margin:0.5em">
                 <label for="last_menses_start_date">Start date of last period: </label>
-                <input type="date" id="last_menses_start_date" name="last_menses_start_date" />
+                <input type="date" id="last_menses_start_date" name="last_menses_start_date" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="last_menses_end_date">End date of last period: </label>
-                <input type="date" id="last_menses_end_date" name="last_menses_end_date" />
+                <input type="date" id="last_menses_end_date" name="last_menses_end_date" required/>
             </li>
             <li class="button">
                 <button type="submit" style="padding: 1em;">Submit</button>
