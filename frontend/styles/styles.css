@@ -1,6 +1,43 @@
-body {
+html, body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: #fdc3d8;
+    margin: 0;
+    padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    background-color: #ffeef5;
+}
+
+.navbar li {
+    float: right;
+    margin: 0.5em; 
+}
+
+.navbar .navbar-left {
+    float: left;
+    margin-left: 10px;
+}
+
+.navbar img {
+    display: block;
+    width: 80px; 
+}
+
+.content {
+    flex: 1;
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
 }
 
 a {
@@ -12,7 +49,7 @@ a {
     text-decoration: none;
 }
 
-.active {
+a.active {
     background-color: #1f1013    ;
     color:#ffb0cd
 }
@@ -36,12 +73,19 @@ li {
     font-size: 16px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-h2 {
+footer {
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
     text-align: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+    padding: 1em;
+    height: 1.25em;
+    width: 100%;
+    background-color: #ffeef5;
+    color: #000;
+  }

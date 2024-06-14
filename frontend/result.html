@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <title>Your Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <style>
         .wrapper {
             text-align: center;
@@ -17,50 +19,33 @@
             text-align: center;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            background-color: #ffeef5;
-        }
-
-        li {
-            float: right;
-            margin:0.5em;
-        }
-
-
-        .navbar-left {
-            float: left;
-            margin: 0.5em;
-        }
-
-        .navbar-left img {
-            display: block;
-        }
     </style>
-    <title>Your Result</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
   </head>
   <body>
-    <ul>
-        <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
-        <li><a href="{{ url_for('info') }}">Information</a></li>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li style="float:left;" class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
-    </ul>
-    <h1 style="font-family:'Georgia';">Your Phase Prediction</h1>
-    <p style="text-align: center;">Your menstrual cycle phase prediction is ready!</p>
-    <p style="text-align: center; font-weight: bold;">{{ pcod_risk }}</p>
-    <p style="text-align: center; font-weight: bold;">{{ cycle_phase }}</p>
-    <p>
-        Now that you know your menstrual cycle phase, you can make use of our chatbot to 
-        learn more about the diet and exercise plan that you can follow.
-        <br>
-        Click on the button in the bottom right corner to access the chatbot.
-    </p>
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script src="https://mediafiles.botpress.cloud/78b69208-7dea-4118-b663-7fd794459cc2/webchat/config.js" defer></script>
-  </body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
+            <li><a href="{{ url_for('info') }}">Information</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
+        </ul>
+    </div>
+    <div class = "content">
+        <h1>Your Phase Prediction</h1>
+        <p style="text-align: center;">Your menstrual cycle phase prediction is ready!</p>
+        <p style="text-align: center; font-weight: bold;">{{ pcod_risk }}</p>
+        <p style="text-align: center; font-weight: bold;">{{ cycle_phase }}</p>
+        <p>
+            Now that you know your menstrual cycle phase, you can make use of our chatbot to 
+            learn more about the diet and exercise plan that you can follow.
+            <br>
+            Click on the button in the bottom right corner to access the chatbot.
+        </p>
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script src="https://mediafiles.botpress.cloud/78b69208-7dea-4118-b663-7fd794459cc2/webchat/config.js" defer></script>
+    </div>
+    <footer>
+        <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
+    </footer>
+</body>
 </html>

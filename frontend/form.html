@@ -10,21 +10,13 @@
         form {
             display: inline-block;
             padding: 1em;
-            border: 1px solid #650d27;
+            border: 2px solid #650d27;
             border-radius: 2em;
         }
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
-        }
-        .nav {
-            overflow: hidden;
-            background-color: #ffeef5;
-        }
-        li.nav {
-            float: right;
-            margin:0.5em;
         }
         label {
             display: inline-block;
@@ -37,6 +29,7 @@
             width: 300px;
             box-sizing: border-box;
             padding: 0.5em;
+            background-color: #ffeef5;
             border: 1px solid #613939;
             border-radius: 1em;
         }
@@ -55,50 +48,49 @@
             text-decoration: none;
         }
         select {
-            border-radius: 2em;
+            border-radius: 1em;
             padding: 0.5em;
+            background-color: #ffeef5;
+            border: 1px solid #613939;
         }
         hr {
             border: 1px solid #650d27
         }
-        .navbar-left {
-            float: left;
-            margin: 0.5em;
-        }
-        .navbar-left img {
-            display: block;
+        p {
+            text-align: center;
         }
     </style>
-    <title>User Form</title>
-    <!-- Use the Flask route to serve the CSS -->
+    <title>Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
-    <ul class="nav">
-        <li class="nav"><a href="{{ url_for('get_plan') }}" class="active" >Get your plan</a></li>
-        <li class="nav"><a href="{{ url_for('info') }}">Information</a></li>
-        <li class="nav"><a href="{{ url_for('home') }}">Home</a></li>
-        <li style="float:left;" class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
-    </ul>
+    <div class = "navbar">
+        <ul>
+            <li><a href="{{ url_for('get_plan') }}" class="active" >Get your plan</a></li>
+            <li><a href="{{ url_for('info') }}">Information</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
+        </ul>
+    </div>
     <br>
-    <h1>Get your Personal Health Plan and PCOD Risk Assessment</h1>
-    <p>Ready to get your personalised plan? Enter your details below!</p>
-    <!-- Change the form action to /submit -->
-    <form action="/submit" method="post">
+    <div class = "content">
+        <h1>Get your Personal Health Plan and PCOD Risk Assessment</h1>
+        <p>Ready to get your personalised plan? Enter your details below!</p>
+        <form action="/submit" method="post">
         <h2>Your Personal Information</h2>
         <p>Why do we need this? This information is used to calculate your BMI, which helps us calculate your PCOD Risk Assessment.</p>
         <ul>
             <li style="margin:0.5em">
               <label for="age">Age: </label>
-              <input type="number" id="age" name="age" required/>
+              <input type="number" id="age" name="age" min ="8" max="60" required/>
             </li>
             <li style="margin:0.5em">
               <label for="height">Height (cm): </label>
-              <input type="number" id="height" name="height" required/>
+              <input type="number" id="height" name="height" min="120" max="190" step="0.1" required/>
             </li>
             <li style="margin:0.5em">
               <label for="weight">Weight (kgs): </label>
-              <input type="number" id="weight" name="weight" required/>
+              <input type="number" id="weight" name="weight" min="20" max="100" step="0.1" required/>
             </li>
         </ul>
         <br>
@@ -108,15 +100,15 @@
         <ul>
             <li style="margin:0.5em">
                 <label for="avg_cycle_length">Average Cycle Length (days): </label>
-                <input type="number" id="avg_cycle_length" name="avg_cycle_length" required/>
+                <input type="number" id="avg_cycle_length" name="avg_cycle_length" min="14" max="50" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="avg_menses_length">Average Menses (Period) Length (days): </label>
-                <input type="number" id="avg_menses_length" name="avg_menses_length" required/>
+                <input type="number" id="avg_menses_length" name="avg_menses_length" min="1" max="12" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="number_of_peak">Number of days of peak bleeding: </label>
-                <input type="number" id="number_of_peak" name="number_of_peak" required/>
+                <input type="number" id="number_of_peak" name="number_of_peak" min="1" max="10" required/>
             </li>
             <li style="margin:0.5em">
                 <label for="unusual_bleeding">Do you experience Unusual Bleeding?</label>
@@ -132,13 +124,26 @@
             </li>
             <li style="margin:0.5em">
                 <label for="last_menses_end_date">End date of last period: </label>
-                <input type="date" id="last_menses_end_date" name="last_menses_end_date" required/>
+                <input type="date" id="last_menses_end_date" name="last_menses_end_date" />
             </li>
             <li class="button">
                 <button type="submit" style="padding: 1em;">Submit</button>
             </li>
-        </ul>
-    </form>
-    <br>
-</body>
+          </ul>
+        </form>
+        <br>
+        <br>
+        <br>
+    </div>
+    <footer>
+        <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
+    </footer>
+    <script>
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('last_menses_start_date').setAttribute('max', today);
+            document.getElementById('last_menses_end_date').setAttribute('max', today);
+        };
+    </script>
+  </body>
 </html>

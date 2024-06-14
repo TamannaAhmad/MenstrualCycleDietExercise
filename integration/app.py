@@ -43,18 +43,22 @@ def prepare_input(data):
             number_of_peak, age, avg_cycle_length, avg_cycle_length//2, luteal_phase_length,
             avg_menses_length, unusual_bleeding, weight, bmi, mean_cycle_length
         ]
-        return np.array([processed_data]), last_menses_start_date, estimated_ovulation, avg_cycle_length, avg_menses_length, luteal_phase_length
+        return np.array([processed_data]), last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length
     except KeyError as e:
         raise ValueError(f"Missing key in form data: {e}")
 
-def predict_cycle_phase(last_menses_start_date, estimated_ovulation, avg_cycle_length, avg_menses_length, luteal_phase_length):  
+def predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length):  
     today = pd.Timestamp.today()
     cycle_day = (today-last_menses_start_date).days 
     ovulation_day = (estimated_ovulation - last_menses_start_date).days
-    luteal_phase_start = ovulation_day + 1
-    if cycle_day <= avg_menses_length:
+    if pd.notnull(last_menses_end_date):
+        menses_duration = (last_menses_end_date - last_menses_start_date).days + 1
+    else:
+        menses_duration = avg_menses_length
+
+    if cycle_day <= menses_duration:
         return "Menstrual Phase"
-    elif avg_menses_length < cycle_day <= ovulation_day:
+    elif menses_duration < cycle_day <= ovulation_day:
         return "Follicular Phase"
     elif cycle_day == ovulation_day:
         return "Approximate Day of Ovulation"
@@ -80,7 +84,7 @@ def submit():
     if request.method == 'POST':
         try:
             form_data = request.form
-            input_data, last_menses_start_date, estimated_ovulation, avg_cycle_length, avg_menses_length, luteal_phase_length = prepare_input(form_data)
+            input_data, last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length = prepare_input(form_data)
             prediction = model.predict(input_data)
 
             if prediction < 3:
@@ -90,7 +94,7 @@ def submit():
             else:
                 pcod_risk = "High risk of PCOD"
             
-            cycle_phase = predict_cycle_phase(last_menses_start_date, estimated_ovulation, avg_cycle_length, avg_menses_length, luteal_phase_length)
+            cycle_phase = predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length)
 
             return render_template('result.html', pcod_risk=pcod_risk, cycle_phase=cycle_phase)
         except ValueError as e:

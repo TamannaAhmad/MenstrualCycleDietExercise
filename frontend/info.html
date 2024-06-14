@@ -16,20 +16,9 @@
             margin-left: 15%;
         }
 
-        .nav {
-            list-style-type: none;
-            background-color: #ffeef5;
-            overflow: hidden;
-            margin: 0;
-        }
-
         li {
-            float: right;
             margin: 0.5em;
-        }
-
-        .list {
-            float:none;
+            text-align: left;
         }
 
         img.ctnt {
@@ -44,14 +33,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
   </head>
   <body>
-    <ul class = "nav">
-        <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
-        <li><a href="{{ url_for('info') }}" class="active">Information</a></li>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li style="float:left;"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
-    </ul>
-    <br>
-    <h1>Menstrual Health Information</h1>
+    <div class = "navbar">
+        <ul>
+            <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
+            <li><a href="{{ url_for('info') }}" class="active">Information</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
+        </ul>
+    </div>
+    <div class = "content">
+        <h1>Menstrual Health Information</h1>
     <p style="text-align: center;">Want to know more about menstrual cycle phases or PCOS/PCOD? Read on!</p>
     <br>
     <p style="text-align: justify;">
@@ -77,6 +68,12 @@
         <div class="wrapper">
             <button type = "submit"><a href="{{ url_for('get_plan') }}" style="background-color: none;">Ready to dive in?</a></button>
         </div>
+    </div>
         <br>
+        <br>
+        <br>
+    <footer>
+        <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
+    </footer>
   </body>
 </html> 

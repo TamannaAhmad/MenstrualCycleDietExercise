@@ -4,24 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #ffeef5;
-        }
-        
-        li {
-            float: right;
-            margin: 0.5em
-        }
-
-        img.ctnt {
-            display: block;
-            margin: auto;
-        }
-
         .container {
             position: relative;
             text-align: center;
@@ -40,27 +22,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
-    <ul>
-        <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
-        <li><a href="{{ url_for('info') }}">Information</a></li>
-        <li><a href="{{ url_for('home') }}" class="active">Home</a></li>       
-        <li style="float:left;"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
-    </ul>
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" class="ctnt" style="width: 15%;">
-    <i><h2 align = "center">Your Personalised Menstrual Health Planner</h2></i>
-    <div class="container">
-        <img src="{{ url_for('static', filename='landing_page.png') }}" alt="woman vector image" style="width:100%;">
-        <div class="basics">
-            <p style="width: 20em; font-size: 1.25em; color: #fff;", align="justify">
-                Menstrual cycles affect women in more ways than we think. 
-                The changes in each phase require special attention in diet and exercise. These practices aren't widely adopted.
-                <br>
-                We aim to provide users with personalised guidance on diet and exercise plans to follow. 
-                This is designed by determining what phase of the cycle you are currently in.
-            </p>
-            <button type = "submit"><a href="{{ url_for('info') }}" style="background-color: none;">Ready to Learn More?</a></button>
+    <div class = "navbar">
+        <ul>
+            <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
+            <li><a href="{{ url_for('info') }}">Information</a></li>
+            <li><a href="{{ url_for('home') }}" class="active">Home</a></li>       
+            <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
+        </ul>
+    </div>
+    <div class = "content">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" class="ctnt" style="width: 15%;">
+        <i><h2 align = "center">Your Personalised Menstrual Health Planner</h2></i>
+        <div class="container">
+            <img src="{{ url_for('static', filename='landing_page.png') }}" alt="woman vector image" style="width:100%;">
+            <div class="basics">
+                <p style="width: 20em; font-size: 1.25em; color: #fff;", align="justify">
+                    Menstrual cycles affect women in more ways than we think. 
+                    The changes in each phase require special attention in diet and exercise. These practices aren't widely adopted.
+                    <br>
+                    We aim to provide users with personalised guidance on diet and exercise plans to follow. 
+                    This is designed by determining what phase of the cycle you are currently in.
+                </p>
+                <button type = "submit"><a href="{{ url_for('info') }}" style="background-color: none;">Ready to Learn More?</a></button>
+            </div>
         </div>
-      </div>
-    <script src="scripts/app.js"></script>
+        <br>
+    </div>
+    <footer>
+        <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
+    </footer>
 </body>
 </html>
