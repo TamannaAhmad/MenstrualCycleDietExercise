@@ -7,10 +7,9 @@
         .container {
             position: relative;
             text-align: center;
-            color: rgb(0, 0, 0);
         }
 
-        .basics {
+        .overlay {
             position: absolute;
             top: 50%;
             left: 25%;
@@ -22,20 +21,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
+    <!-- navigation bar -->
     <div class = "navbar">
         <ul>
             <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
             <li><a href="{{ url_for('info') }}">Information</a></li>
-            <li><a href="{{ url_for('home') }}" class="active">Home</a></li>       
+            <li><a href="{{ url_for('home') }}" class="active">Home</a></li> <!-- current page highlighted -->   
             <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
         </ul>
     </div>
     <div class = "content">
+        <!-- Flow Well Logo-->
         <img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" class="ctnt" style="width: 15%;">
         <i><h2 align = "center">Your Personalised Menstrual Health Planner</h2></i>
         <div class="container">
-            <img src="{{ url_for('static', filename='landing_page.png') }}" alt="woman vector image" style="width:100%;">
-            <div class="basics">
+            <!-- image of woman -->
+            <img src="{{ url_for('static', filename='landing_page.png') }}" alt="woman vector image" style="width:100%; height: auto;">
+            <!-- text that overlays the image -->
+            <div class="overlay">
                 <p style="width: 20em; font-size: 1.25em; color: #fff;", align="justify">
                     Menstrual cycles affect women in more ways than we think. 
                     The changes in each phase require special attention in diet and exercise. These practices aren't widely adopted.
@@ -43,11 +46,12 @@
                     We aim to provide users with personalised guidance on diet and exercise plans to follow. 
                     This is designed by determining what phase of the cycle you are currently in.
                 </p>
+                <!-- link to info page -->
                 <button type = "submit"><a href="{{ url_for('info') }}" style="background-color: none;">Ready to Learn More?</a></button>
             </div>
         </div>
-        <br>
     </div>
+    <!-- footer -->
     <footer>
         <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
     </footer>

@@ -1,13 +1,15 @@
+/*styling for the HTML and body*/
 html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #fdc3d8;
     margin: 0;
-    padding: 0;
+    padding-bottom: 1.5em; /*bottom padding to prevent footer covering content*/
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/*styling for the navigation bar*/
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -16,23 +18,28 @@ html, body {
     position: fixed;
     width: 100%;
     background-color: #ffeef5;
+    z-index: 1000;
 }
 
+/*styling for the navigation bar items*/
 .navbar li {
     float: right;
     margin: 0.5em; 
 }
 
+/* Styling for the left-aligned items in the navbar */
 .navbar .navbar-left {
     float: left;
     margin-left: 10px;
 }
 
+/*styling for logo in nav bar*/
 .navbar img {
     display: block;
     width: 80px; 
 }
 
+/*styling for the main content area */
 .content {
     flex: 1;
     text-align: center;
@@ -40,6 +47,7 @@ html, body {
     padding: 20px;
 }
 
+/*styling for anchor links*/
 a {
     display: block;
     color: #1f1013;
@@ -49,11 +57,13 @@ a {
     text-decoration: none;
 }
 
+/*styling for anchor link to present page*/
 a.active {
     background-color: #1f1013    ;
     color:#ffb0cd
 }
 
+/*styling for buttons*/
 button {
     font-weight: bold;
     border-radius: 1em;
@@ -61,7 +71,7 @@ button {
     background-color: #ffb0cd;
 }
 
-
+/*general paragraph styling*/
 p {
     text-align: justify;
     font-size: 18px;
@@ -69,17 +79,20 @@ p {
     margin-right: 10%;
 }
 
+/*list item styling*/
 li {
     font-size: 16px;
 }
 
+/*styling for headings*/
 h1, h2 {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+/*styling for footer*/
 footer {
-    position: fixed;
+    position: fixed; 
     bottom: 0;
     overflow: hidden;
     text-align: center;

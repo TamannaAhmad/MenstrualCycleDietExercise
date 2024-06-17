@@ -22,7 +22,7 @@ def prepare_input(data):
         weight = float(data['weight'])
         avg_cycle_length = int(data['avg_cycle_length'])
         avg_menses_length = int(data['avg_menses_length'])
-        number_of_peak = int(data['number_of_peak'])  # Ensure correct key usage
+        number_of_peak = int(data['number_of_peak'])  
 
         # Convert unusual_bleeding to 1 or 0
         unusual_bleeding = 1 if data['unusual_bleeding'] == 'yes' else 0
@@ -47,26 +47,34 @@ def prepare_input(data):
     except KeyError as e:
         raise ValueError(f"Missing key in form data: {e}")
 
+#function to predict the cycle phase of user
 def predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length):  
     today = pd.Timestamp.today()
-    cycle_day = (today-last_menses_start_date).days 
+    cycle_day = (today-last_menses_start_date).days #calculate the cycle day in relation to current day
     ovulation_day = (estimated_ovulation - last_menses_start_date).days
+    #if available use last_menses_end_date for accuracy:
     if pd.notnull(last_menses_end_date):
         menses_duration = (last_menses_end_date - last_menses_start_date).days + 1
     else:
         menses_duration = avg_menses_length
 
     if cycle_day <= menses_duration:
-        return "Menstrual Phase"
+        return "Menstrual Phase", cycle_day
     elif menses_duration < cycle_day <= ovulation_day:
-        return "Follicular Phase"
+        return "Follicular Phase", cycle_day
     elif cycle_day == ovulation_day:
-        return "Approximate Day of Ovulation"
+        return "Approximate Day of Ovulation", cycle_day
     elif ovulation_day < cycle_day <= avg_cycle_length:
-        return "Luteal Phase"
+        return "Luteal Phase", cycle_day
     else:
-        return "Irregular Cycle"
+        return "Irregular Cycle", cycle_day
 
+#function to calculate next menses date
+def next_menses_date(last_menses_start_date, avg_cycle_length):
+    next_start_date = last_menses_start_date + pd.Timedelta(days=(avg_cycle_length))
+    return next_start_date
+
+#define routes for webpage links
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -94,9 +102,9 @@ def submit():
             else:
                 pcod_risk = "High risk of PCOD"
             
-            cycle_phase = predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length)
-
-            return render_template('result.html', pcod_risk=pcod_risk, cycle_phase=cycle_phase)
+            cycle_phase, cycle_day = predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length)
+            next_menses_start_date = next_menses_date(last_menses_start_date, avg_cycle_length)
+            return render_template('result.html', pcod_risk=pcod_risk, cycle_phase=cycle_phase, cycle_day=cycle_day, next_menses=next_menses_start_date.strftime('%d-%m-%Y'))
         except ValueError as e:
             return str(e), 400   # Return error message and 400 status code for bad request
 

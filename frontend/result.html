@@ -6,22 +6,13 @@
     <title>Your Result</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <style>
-        .wrapper {
+        p {
             text-align: center;
         }
-
-        .button {
-            position: absolute;
-            top: 50%;
-        }
-
-        body { 
-            text-align: center;
-        }
-
     </style>
   </head>
   <body>
+    <!-- navvigation bar -->
     <div class="navbar">
         <ul>
             <li><a href="{{ url_for('get_plan') }}">Get your plan</a></li>
@@ -30,20 +21,28 @@
             <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
         </ul>
     </div>
+
+    <!-- main content -->
     <div class = "content">
-        <h1>Your Phase Prediction</h1>
-        <p style="text-align: center;">Your menstrual cycle phase prediction is ready!</p>
-        <p style="text-align: center; font-weight: bold;">{{ pcod_risk }}</p>
-        <p style="text-align: center; font-weight: bold;">{{ cycle_phase }}</p>
-        <p>
+        <h1>Your Menstrual Cycle Prediction</h1>
+        <p>Your menstrual cycle and health predictions are ready!</p>
+        <p>PCOD Risk: <b>{{ pcod_risk }}</b></p>
+        <p>Cycle Day: <b>{{ cycle_day }}</b></p>
+        <p style="font-weight: bold;">{{ cycle_phase }}</p>
+        <p>Next period expected on <b>{{ next_menses }}</b></p>
+        <p style="text-align: justify;">
             Now that you know your menstrual cycle phase, you can make use of our chatbot to 
             learn more about the diet and exercise plan that you can follow.
             <br>
             Click on the button in the bottom right corner to access the chatbot.
         </p>
+
+        <!-- chat bot embed code -->
         <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
         <script src="https://mediafiles.botpress.cloud/78b69208-7dea-4118-b663-7fd794459cc2/webchat/config.js" defer></script>
     </div>
+
+    <!-- footer -->
     <footer>
         <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
     </footer>

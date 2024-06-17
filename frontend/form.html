@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <style>
-        body { 
-            text-align: center;
-        }
+        /* adjusted styles for form fields */
         form {
             display: inline-block;
             padding: 1em;
@@ -17,6 +15,9 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+        }
+        li {
+            margin: 0.5em;
         }
         label {
             display: inline-block;
@@ -41,12 +42,6 @@
             vertical-align: top;
             height: 5em;
         }
-        .button {
-            padding-left: 90px;
-        }
-        button {
-            text-decoration: none;
-        }
         select {
             border-radius: 1em;
             padding: 0.5em;
@@ -64,6 +59,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
+    <!-- navigation bar -->
     <div class = "navbar">
         <ul>
             <li><a href="{{ url_for('get_plan') }}" class="active" >Get your plan</a></li>
@@ -72,7 +68,8 @@
             <li class="navbar-left"><img src="{{ url_for('static', filename='logo.png') }}" alt="flow well logo" style="width: 11%"></li>
         </ul>
     </div>
-    <br>
+    
+    <!-- main content -->
     <div class = "content">
         <h1>Get your Personal Health Plan and PCOD Risk Assessment</h1>
         <p>Ready to get your personalised plan? Enter your details below!</p>
@@ -80,15 +77,15 @@
         <h2>Your Personal Information</h2>
         <p>Why do we need this? This information is used to calculate your BMI, which helps us calculate your PCOD Risk Assessment.</p>
         <ul>
-            <li style="margin:0.5em">
+            <li>
               <label for="age">Age: </label>
               <input type="number" id="age" name="age" min ="8" max="60" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
               <label for="height">Height (cm): </label>
               <input type="number" id="height" name="height" min="120" max="190" step="0.1" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
               <label for="weight">Weight (kgs): </label>
               <input type="number" id="weight" name="weight" min="20" max="100" step="0.1" required/>
             </li>
@@ -98,19 +95,19 @@
         <h2>Your Cycle Information</h2>
         <p>We use this information to determine the menstrual cycle phase that you are currently in.</p>
         <ul>
-            <li style="margin:0.5em">
+            <li>
                 <label for="avg_cycle_length">Average Cycle Length (days): </label>
                 <input type="number" id="avg_cycle_length" name="avg_cycle_length" min="14" max="50" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
                 <label for="avg_menses_length">Average Menses (Period) Length (days): </label>
                 <input type="number" id="avg_menses_length" name="avg_menses_length" min="1" max="12" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
                 <label for="number_of_peak">Number of days of peak bleeding: </label>
                 <input type="number" id="number_of_peak" name="number_of_peak" min="1" max="10" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
                 <label for="unusual_bleeding">Do you experience Unusual Bleeding?</label>
                 <select name="unusual_bleeding" id="unusual_bleeding" required>
                     <option value="void">Y/N</option>
@@ -118,32 +115,39 @@
                     <option value="yes">Yes</option>
                 </select>
             </li>
-            <li style="margin:0.5em">
+            <li>
                 <label for="last_menses_start_date">Start date of last period: </label>
                 <input type="date" id="last_menses_start_date" name="last_menses_start_date" required/>
             </li>
-            <li style="margin:0.5em">
+            <li>
                 <label for="last_menses_end_date">End date of last period: </label>
                 <input type="date" id="last_menses_end_date" name="last_menses_end_date" />
             </li>
-            <li class="button">
+            <li>
                 <button type="submit" style="padding: 1em;">Submit</button>
             </li>
           </ul>
         </form>
-        <br>
-        <br>
-        <br>
     </div>
+
+    <!-- footer -->
     <footer>
         <small>Driven by Hallucination Hackers and AI&nbsp;&nbsp;2024</small>
     </footer>
+    
     <script>
+        // get current day and set it as max for form inputs
         window.onload = function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('last_menses_start_date').setAttribute('max', today);
             document.getElementById('last_menses_end_date').setAttribute('max', today);
         };
+        // autoscroll to focused input field
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
     </script>
   </body>
 </html>
