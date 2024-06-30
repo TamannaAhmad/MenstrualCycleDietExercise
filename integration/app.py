@@ -50,8 +50,8 @@ def prepare_input(data):
 #function to predict the cycle phase of user
 def predict_cycle_phase(last_menses_start_date, last_menses_end_date, estimated_ovulation, avg_cycle_length, avg_menses_length):  
     today = pd.Timestamp.today()
-    cycle_day = (today-last_menses_start_date).days #calculate the cycle day in relation to current day
-    ovulation_day = (estimated_ovulation - last_menses_start_date).days
+    cycle_day = (today-last_menses_start_date).days + 1 #calculate the cycle day in relation to current day
+    ovulation_day = (estimated_ovulation - last_menses_start_date).days + 1
     #if available use last_menses_end_date for accuracy:
     if pd.notnull(last_menses_end_date):
         menses_duration = (last_menses_end_date - last_menses_start_date).days + 1
